@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Learning Ledger — Student Scholar & Research Integrity</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=JetBrains+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400;1,6..72,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body class="academic-theme">
+  <!-- Subtle Ambient Academic Glows -->
+  <div class="academic-grid-bg"></div>
+  <div class="glow-orb orb-1"></div>
+  <div class="glow-orb orb-2"></div>
+  <div class="glow-orb orb-3"></div>
+
+  <div class="app-layout">
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-crest">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+            <path d="M12 6v6"></path>
+            <path d="M9 9h6"></path>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <h1>Learning Ledger</h1>
+          <span class="scholar-tag">Scholar & Research Edition</span>
+        </div>
+      </div>
+
+      <!-- Student Scholar Profile / Library Badge -->
+      <div class="scholar-badge-card">
+        <div class="scholar-avatar">
+          <span>🎓</span>
+        </div>
+        <div class="scholar-meta">
+          <span class="scholar-name">Student Researcher</span>
+          <span class="scholar-field" id="sidebar-indexed-summary">0 Papers • Jev Verified</span>
+        </div>
+      </div>
+
+      <nav class="nav-menu">
+        <button class="nav-item active" data-tab="claims">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"></path><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg>
+          <span>Research Ledger</span>
+          <span class="nav-badge" id="badge-active-claims">0</span>
+        </button>
+
+        <button class="nav-item" data-tab="learn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
+          <span>Record Finding</span>
+        </button>
+
+        <button class="nav-item" data-tab="ask">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+          <span>Ask Literature (RAG)</span>
+        </button>
+
+        <button class="nav-item" data-tab="drop">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+          <span>Ingest PDF Papers</span>
+        </button>
+
+        <button class="nav-item" data-tab="audit">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+          <span>Integrity Audit</span>
+          <span class="nav-badge alert" id="badge-flagged-claims" style="display:none">0</span>
+        </button>
+
+        <button class="nav-item" data-tab="inspector">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          <span>DOI & Retraction Tool</span>
+        </button>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="system-status-card" id="system-status-indicator">
+          <div class="status-dot"></div>
+          <div class="status-info">
+            <span class="status-title">Peer-Review Engine</span>
+            <span class="status-desc" id="status-desc-text">Checking connections...</span>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="main-viewport">
+      <!-- Top Scholarly Bar -->
+      <header class="top-bar">
+        <div class="header-left">
+          <div class="academic-breadcrumbs">
+            <span class="crumb-institution">RESEARCH NOTEBOOK</span>
+            <span class="crumb-separator">•</span>
+            <span class="crumb-context">PEER INTEGRITY</span>
+          </div>
+          <h2 id="view-title">Research Ledger</h2>
+          <p id="view-subtitle">Scientific beliefs grounded in verbatim quotes & validated by Jev 1.13 decision gates.</p>
+        </div>
+
+        <div class="stats-pills">
+          <div class="stat-pill" title="Total scientific claims recorded in this ledger">
+            <span class="stat-num" id="stat-total-claims">0</span>
+            <span class="stat-label">Total Claims</span>
+          </div>
+          <div class="stat-pill success" title="Active claims with validated support">
+            <span class="stat-num" id="stat-active-claims">0</span>
+            <span class="stat-label">Active / Verified</span>
+          </div>
+          <div class="stat-pill warning" title="Claims where quote support may have drifted">
+            <span class="stat-num" id="stat-suspect-claims">0</span>
+            <span class="stat-label">Needs Review</span>
+          </div>
+          <div class="stat-pill danger" title="Claims from officially retracted papers">
+            <span class="stat-num" id="stat-retracted-claims">0</span>
+            <span class="stat-label">Retracted</span>
+          </div>
+          <div class="stat-pill neutral" title="Total embedded text chunks in vector store">
+            <span class="stat-num" id="stat-chunks-indexed">0</span>
+            <span class="stat-label">Indexed Chunks</span>
+          </div>
+        </div>
+      </header>
+
+      <!-- Global Missing Key Banner -->
+      <div class="api-warning-banner" id="api-warning-banner" style="display: none;">
+        <div class="banner-icon">⚠️</div>
+        <div class="banner-content">
+          <strong>Configuration Notice:</strong>
+          <span id="api-warning-text">Missing API Keys. Fill in .env to enable all features.</span>
+        </div>
+      </div>
+
+      <!-- VIEW 1: CLAIMS LEDGER -->
+      <section class="tab-pane active" id="pane-claims">
+        <div class="student-tip-banner">
+          <div class="tip-icon">💡</div>
+          <div class="tip-body">
+            <strong>Scholar Tip for Students:</strong> Science is not permanent. When new evidence, retractions, or errata are published, Learning Ledger highlights the exact beliefs you should <em>unlearn</em> or <em>revise</em>.
+          </div>
+          <div class="view-mode-toggle">
+            <button class="mode-btn active" id="btn-view-grid" onclick="setClaimsViewMode('grid')" title="Traditional academic cards grid">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+              <span>Journal View</span>
+            </button>
+            <button class="mode-btn" id="btn-view-flashcards" onclick="setClaimsViewMode('flashcards')" title="Student revision & memory flashcard mode">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+              <span>Study Cards (Quiz)</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="toolbar">
+          <div class="search-box">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            <input type="text" id="claims-search-input" placeholder="Search claims by keyword, DOI, title, or quote text...">
+          </div>
+
+          <div class="filter-group">
+            <button class="filter-btn active" data-filter="">All Claims</button>
+            <button class="filter-btn" data-filter="active">Verified (Active)</button>
+            <button class="filter-btn" data-filter="suspect">Under Review</button>
+            <button class="filter-btn" data-filter="retracted">Retracted</button>
+          </div>
+
+          <button class="btn btn-primary" onclick="switchTab('learn')">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+            + Record Finding
+          </button>
+        </div>
+
+        <div class="claims-grid" id="claims-container">
+          <div class="loading-state">
+            <div class="spinner"></div>
+            <span>Loading claims from research ledger...</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- VIEW 2: RECORD CLAIM -->
+      <section class="tab-pane" id="pane-learn">
+        <div class="form-container">
+          <div class="glass-card scholar-card">
+            <div class="card-header">
+              <div class="card-kicker">SCIENTIFIC OBSERVATION</div>
+              <h3>Record What You Learned</h3>
+              <p>Every claim is mathematically verified against the verbatim quote using Jev 1.13 typed probability decision gates.</p>
+            </div>
+
+            <!-- Student Quick Fill Helper -->
+            <div class="sample-loader-box">
+              <span>Need an example?</span>
+              <button type="button" class="chip-btn" onclick="fillSampleClaim('lora')">⚡ Load LoRA Fine-Tuning Claim</button>
+              <button type="button" class="chip-btn" onclick="fillSampleClaim('transformer')">⚡ Load Transformer Claim</button>
+            </div>
+
+            <form id="record-claim-form" class="form-body">
+              <div class="form-group">
+                <label for="learn-claim-input">What did you learn? (Your Claim) <span class="required">*</span></label>
+                <textarea id="learn-claim-input" rows="3" placeholder="e.g., LoRA reduces trainable parameters by up to 10,000x with comparable performance to full fine-tuning." required></textarea>
+                <span class="field-hint">State your finding clearly in your own words. Avoid overstating what the author actually demonstrated.</span>
+              </div>
+
+              <div class="form-group">
+                <label for="learn-quote-input">Exact Supporting Quote from Paper <span class="required">*</span></label>
+                <textarea id="learn-quote-input" rows="4" placeholder="e.g., 'When compared to GPT-3 175B fine-tuned with Adam, LoRA can reduce the number of trainable parameters by 10,000 times and the GPU memory requirement by 3 times.'" required></textarea>
+                <span class="field-hint">Verbatim sentence from the paper. Jev evaluates if this quote truly entails your claim.</span>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group col-2">
+                  <label for="learn-doi-input">Paper DOI (recommended)</label>
+                  <input type="text" id="learn-doi-input" placeholder="e.g., 10.48550/arXiv.2106.09685">
+                </div>
+
+                <div class="form-group col-2">
+                  <label for="learn-title-input">Paper Title</label>
+                  <input type="text" id="learn-title-input" placeholder="e.g., LoRA: Low-Rank Adaptation of Large Language Models">
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group col-2">
+                  <label for="learn-page-input">Page Number</label>
+                  <input type="number" id="learn-page-input" placeholder="1" min="1">
+                </div>
+              </div>
+
+              <div class="form-actions">
+                <button type="submit" class="btn btn-primary" id="btn-submit-claim">
+                  <span>Verify with Jev & Save to Ledger</span>
+                  <div class="btn-spinner" style="display: none;"></div>
+                </button>
+              </div>
+            </form>
+
+            <div class="verification-preview" id="learn-result-box" style="display: none;"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- VIEW 3: ASK PAPERS (RAG) -->
+      <section class="tab-pane" id="pane-ask">
+        <div class="chat-container glass-card scholar-card">
+          <div class="chat-header">
+            <div>
+              <div class="card-kicker">LITERATURE TUTOR</div>
+              <h3>Research Inquiries & Tutoring</h3>
+              <p>Answers are synthesized exclusively from indexed excerpts with exact page citations.</p>
+            </div>
+            <span class="badge scholar-badge" id="indexed-sources-badge">0 Papers Indexed</span>
+          </div>
+
+          <!-- Student Inquiry Starters -->
+          <div class="chat-prompts-tray">
+            <span class="tray-label">Research prompts:</span>
+            <button class="prompt-chip" onclick="applyPromptQuery('Summarize the primary methodology and novel architecture proposed in this paper.')">🔬 Core Methodology</button>
+            <button class="prompt-chip" onclick="applyPromptQuery('What benchmark datasets and evaluation metrics were tested, and what were the main results?')">📊 Benchmarks & Results</button>
+            <button class="prompt-chip" onclick="applyPromptQuery('What are the critical limitations, assumptions, or failure modes highlighted by the authors?')">⚠️ Limitations & Risks</button>
+            <button class="prompt-chip" onclick="applyPromptQuery('What is the single most important testable claim or takeaway from this work?')">💡 Key Testable Claim</button>
+          </div>
+
+          <div class="chat-messages" id="chat-messages">
+            <div class="message assistant">
+              <div class="msg-avatar">📚</div>
+              <div class="msg-bubble">
+                <p><strong>Greetings, Scholar!</strong> Ask any question about your ingested papers. I will search your local vector index and synthesize a structured response with verbatim citations and page numbers.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="chat-input-bar">
+            <input type="text" id="chat-input" placeholder="e.g. How does the multi-head attention mechanism calculate query-key interactions?" onkeydown="if(event.key==='Enter') sendChatMessage()">
+            <button class="btn btn-primary" id="btn-send-chat" onclick="sendChatMessage()">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- VIEW 4: DROP PAPER -->
+      <section class="tab-pane" id="pane-drop">
+        <div class="form-container">
+          <div class="glass-card scholar-card">
+            <div class="card-header">
+              <div class="card-kicker">MANUSCRIPT INGESTION</div>
+              <h3>Ingest Research PDF</h3>
+              <p>Extracts text, strips academic watermarks & license banners, computes Gemini embeddings, and indexes in ChromaDB.</p>
+            </div>
+
+            <div class="drop-zone" id="pdf-drop-zone">
+              <div class="drop-icon-seal">
+                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                  <polyline points="14 2 14 8 20 8"></polyline>
+                  <line x1="12" y1="18" x2="12" y2="12"></line>
+                  <line x1="9" y1="15" x2="12" y2="12"></line>
+                  <line x1="15" y1="15" x2="12" y2="12"></line>
+                </svg>
+              </div>
+              <p class="drop-title">Drop your academic paper PDF here</p>
+              <p class="drop-subtitle">or click to browse your research collection</p>
+              <input type="file" id="pdf-file-input" accept=".pdf" style="display: none;">
+              <div class="selected-file-pill" id="selected-file-pill" style="display: none;"></div>
+            </div>
+
+            <div class="form-body" style="margin-top: 1.5rem;">
+              <div class="form-group">
+                <label for="drop-path-input">Or specify local repository path:</label>
+                <input type="text" id="drop-path-input" placeholder="e.g., library/attention_is_all_you_need.pdf">
+              </div>
+
+              <div class="form-row">
+                <div class="form-group col-2">
+                  <label for="drop-doi-input">Paper DOI (optional)</label>
+                  <input type="text" id="drop-doi-input" placeholder="10.48550/arXiv.1706.03762">
+                </div>
+                <div class="form-group col-2">
+                  <label for="drop-title-input">Paper Title (optional)</label>
+                  <input type="text" id="drop-title-input" placeholder="Attention Is All You Need">
+                </div>
+              </div>
+
+              <div class="form-actions" style="display: flex; gap: 1rem; align-items: center; flex-wrap: wrap;">
+                <button type="button" class="btn btn-primary" id="btn-ingest-paper" onclick="handlePaperIngest()">
+                  <span>Ingest & Embed Paper</span>
+                  <div class="btn-spinner" style="display: none;"></div>
+                </button>
+                <button type="button" class="btn btn-secondary" id="btn-reindex-paper" onclick="handleReindexLibrary()" title="Purge legacy contaminated chunks and re-index all papers in library/ with clean semantic chunking">
+                  <span>🧹 Purge & Clean Re-index</span>
+                  <div class="btn-spinner" style="display: none;"></div>
+                </button>
+              </div>
+
+              <div class="ingest-status-box" id="ingest-status-box" style="display: none;"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- VIEW 5: REVALIDATE AUDIT -->
+      <section class="tab-pane" id="pane-audit">
+        <div class="audit-header glass-card scholar-card">
+          <div class="audit-intro">
+            <div class="card-kicker">CONTINUOUS VERIFICATION</div>
+            <h3>Automated Research Audit</h3>
+            <p>Scans all stored claims across 4 critical failure modes: Retraction Watch records, Crossref live errata, Jev quote entailment decay, and downstream claim dependency cascades.</p>
+          </div>
+          <button class="btn btn-accent btn-large" id="btn-run-audit" onclick="runFullAudit()">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg>
+            <span>Run Integrity Audit Now</span>
+            <div class="btn-spinner" style="display: none;"></div>
+          </button>
+        </div>
+
+        <div class="audit-results-area" id="audit-results-area">
+          <div class="empty-state">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+            <h4>No Audit Running Currently</h4>
+            <p>Click "Run Integrity Audit Now" to evaluate all your stored academic beliefs against the daily Retraction Watch index.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- VIEW 6: DOI INSPECTOR -->
+      <section class="tab-pane" id="pane-inspector">
+        <div class="form-container">
+          <div class="glass-card scholar-card">
+            <div class="card-header">
+              <div class="card-kicker">CROSSREF & RETRACTION WATCH</div>
+              <h3>Live DOI Inspector</h3>
+              <p>Inspect any academic paper's live status across the local Retraction Watch database, Crossref `update-to` errata notices, and OpenAlex metadata.</p>
+            </div>
+
+            <!-- Student Quick Test DOIs -->
+            <div class="sample-loader-box">
+              <span>Quick tests:</span>
+              <button type="button" class="chip-btn" onclick="inspectQuickDoi('10.48550/arXiv.1706.03762')">📄 Attention Is All You Need</button>
+              <button type="button" class="chip-btn" onclick="inspectQuickDoi('10.1038/nature12873')">⚠️ Nature Retracted Paper</button>
+              <button type="button" class="chip-btn" onclick="inspectQuickDoi('10.48550/arXiv.2106.09685')">📄 LoRA Paper</button>
+            </div>
+
+            <div class="form-body">
+              <div class="form-row">
+                <div class="form-group" style="flex: 1;">
+                  <label for="inspect-doi-input">Enter Paper DOI</label>
+                  <input type="text" id="inspect-doi-input" placeholder="e.g. 10.1038/s41586-020-2649-2" onkeydown="if(event.key==='Enter') runInspector()">
+                </div>
+                <div style="display: flex; align-items: flex-end; margin-bottom: 1.25rem;">
+                  <button class="btn btn-primary" onclick="runInspector()">Inspect DOI</button>
+                </div>
+              </div>
+
+              <div class="inspector-output" id="inspector-output" style="display: none;"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>

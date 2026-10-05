@@ -1,0 +1,22 @@
+# Local data
+.ledger/
+library/*.pdf
+
+# API keys
+.env
+
+# Retraction Watch data (large, re-clone on setup)
+retraction-watch-data/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+dist/
+*.egg-info/
+
+# IDE & Logs
+.vscode/
+.idea/
+.playwright-mcp/
